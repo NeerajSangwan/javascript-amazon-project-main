@@ -1,4 +1,4 @@
-import { cart, deleteFromCart } from "../data/cart.js";
+import { cart, deleteFromCart, updateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 let cartSummaryHTML = "";
@@ -94,5 +94,7 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
       `.js-cart-item-container-${productId}`,
     );
     container.remove();
+    updateCartQuantity();
   });
 });
+updateCartQuantity();

@@ -19,11 +19,24 @@ export function saveToStorage() {
 
 export function deleteFromCart(productId) {
   const newCart = [];
+
   cart.forEach((cartItem) => {
     if (cartItem.productId !== productId) {
       newCart.push(cartItem);
     }
-    cart = newCart;
-    saveToStorage();
   });
+
+  cart = newCart;
+  saveToStorage();
+}
+
+export function updateCartQuantity() {
+  let cartQuantity = 0;
+
+  cart.forEach((item) => {
+    cartQuantity += item.quantity;
+  });
+
+  document.querySelector(".js-checkout-quantity").innerHTML =
+    `${cartQuantity} items`;
 }
