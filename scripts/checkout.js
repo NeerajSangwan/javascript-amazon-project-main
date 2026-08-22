@@ -31,9 +31,11 @@ cart.forEach((cartItem) => {
                 <div class="product-price">$${(matchingProduct.priceCents / 100).toFixed("2")}</div>
                 <div class="product-quantity">
                   <span> Quantity: <span class="quantity-label">${cartItem.quantity}</span> </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link js-update-link link-primary" data-product-id = ${matchingProduct.id}>
                     Update
                   </span>
+                  <input class="quantity-input">
+                  <span class="save-quantity-link link-primary">Save</span>
                   <span class="delete-quantity-link js-delete-link link-primary" data-product-id = ${matchingProduct.id}>
                     Delete
                   </span>
@@ -98,3 +100,9 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
   });
 });
 updateCartQuantity();
+
+document.querySelectorAll(".js-update-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    console.log(link.dataset.productId);
+  });
+});
