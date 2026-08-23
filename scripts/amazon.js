@@ -73,6 +73,7 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
       cart.push({
         productId: productId,
         quantity: 1,
+        deliveryOptionsId: "1",
       });
     }
     saveToStorage();
