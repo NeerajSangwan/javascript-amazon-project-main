@@ -53,13 +53,13 @@ cart.forEach((cartItem) => {
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                        ${deliveryOptionsHTML(matchingProduct)}
+                        ${deliveryOptionsHTML(matchingProduct, cartItem)}
               </div>
             </div>
           </div>
   `;
 });
-function deliveryOptionsHTML(matchingProduct) {
+function deliveryOptionsHTML(matchingProduct, cartItem) {
   const today = dayjs();
 
   let html = "";
@@ -73,10 +73,13 @@ function deliveryOptionsHTML(matchingProduct) {
         ? "FREE"
         : `$${formatMoney(option.priceCents)} - Shipping`;
 
+    const isChecked = option.id === cartItem.deliveryOptionsId;
+
     html += `
       <div class="delivery-option">
         <input
           type="radio"
+          ${isChecked ? "Checked" : ""}
           class="delivery-option-input"
           name="delivery-option-${matchingProduct.id}"
         />
