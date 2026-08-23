@@ -1,6 +1,13 @@
 import { cart, deleteFromCart, updateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 
+const today = dayjs();
+console.log(`todays date: ${today}`);
+const newDate = today.add(7, "days");
+console.log(`7 days later date: ${newDate}`);
+
+console.log(today.format("DD, MMMM YYYY"));
+
 let cartSummaryHTML = "";
 
 cart.forEach((cartItem) => {
