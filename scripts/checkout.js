@@ -3,6 +3,7 @@ import {
   deleteFromCart,
   updateCartQuantity,
   saveToStorage,
+  updateDeliveryOption,
 } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { deliveryOptions } from "../data/deliveryOptions.js";
@@ -88,7 +89,7 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
     const isChecked = option.id === cartItem.deliveryOptionsId;
 
     html += `
-      <div class="delivery-option">
+      <div class="delivery-option js-delivery-option" data-delivery-option-id = "${option.id}" data-product-id = "${matchingProduct.id}">
         <input
           type="radio"
           ${isChecked ? "Checked" : ""}
@@ -174,3 +175,10 @@ function saveQuantity(productId, container) {
 
   container.classList.remove("is-editing-quantity");
 }
+
+document.querySelectorAll(".js-delivery-option").forEach((element) => {
+  element.addEventListener("click", () => {
+    const { productId, deliveryOptionId } = element.dataset;
+    updateDeliveryOption(productId, deliveryOptionId);
+  });
+});
