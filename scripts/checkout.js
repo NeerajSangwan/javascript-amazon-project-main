@@ -21,9 +21,22 @@ cart.forEach((cartItem) => {
     }
   });
 
+  const deliveryOptionId = cartItem.deliveryOptionsId;
+
+  let deliveryOption;
+
+  deliveryOptions.forEach((option) => {
+    if (option.id === deliveryOptionId) {
+      deliveryOption = option;
+    }
+  });
+  const today = dayjs();
+  const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
+  const dateString = deliveryDate.format("dddd, MMMM D");
+
   cartSummaryHTML += `
           <div class="cart-item-container js-cart-item-container-${matchingProduct.id}" data-container-id=${matchingProduct.id}>
-            <div class="delivery-date">Delivery date: Tuesday, June 21</div>
+            <div class="delivery-date">Delivery date: ${dateString}</div>
 
             <div class="cart-item-details-grid">
               <img
@@ -60,10 +73,9 @@ cart.forEach((cartItem) => {
   `;
 });
 function deliveryOptionsHTML(matchingProduct, cartItem) {
-  const today = dayjs();
-
   let html = "";
 
+  const today = dayjs();
   deliveryOptions.forEach((option) => {
     const deliveryDate = today.add(option.deliveryDays, "days");
     const dateString = deliveryDate.format("dddd, MMMM D");
@@ -119,7 +131,6 @@ document.querySelectorAll(".js-update-link").forEach((link) => {
   });
 });
 
-// Enter key on the quantity input
 document.querySelectorAll(".js-quantity-input").forEach((input) => {
   input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
@@ -131,7 +142,6 @@ document.querySelectorAll(".js-quantity-input").forEach((input) => {
   });
 });
 
-// Click on Save
 document.querySelectorAll(".js-save-quantity-link").forEach((link) => {
   link.addEventListener("click", () => {
     const productId = link.dataset.productId;
