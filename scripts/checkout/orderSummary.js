@@ -167,6 +167,7 @@ export function renderOrderSummary() {
     });
     saveToStorage();
     updateCartQuantity();
+    renderPaymentSummary();
     container.querySelector(".js-quantity-label").innerHTML = newQuantity;
 
     container.classList.remove("is-editing-quantity");
