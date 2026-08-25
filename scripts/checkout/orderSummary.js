@@ -43,7 +43,9 @@ export function renderOrderSummary() {
                     <div class="product-name">
                       ${matchingProduct.name}
                     </div>
-                    <div class="product-price">$${(matchingProduct.priceCents / 100).toFixed("2")}</div>
+                    <div class="product-price">
+                    ${matchingProduct.getPrice()}
+                    </div>
                     <div class="product-quantity">
                       <span> Quantity: <span class="quantity-label js-quantity-label">${cartItem.quantity}</span> </span>
                       <span class="update-quantity-link js-update-link link-primary" data-product-id = ${matchingProduct.id}>
